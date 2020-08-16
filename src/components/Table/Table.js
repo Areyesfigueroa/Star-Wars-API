@@ -1,39 +1,31 @@
 import React from 'react';
 import classes from './Table.module.css';
-import TableRows from './TableRows/TableRows';
+import TableHeader from './TableHeader/TableHeader';
+import TableBody from './TableBody/TableBody';
 
 const table = (props) => {
-    console.log(props.data);
-
-    //[row1[col1, col2, col3], row2[col1, col2, col3]]
-    //name, birth_year, height, mass
-    let tableData = [];
-    props.data.forEach(person => {
-        tableData.push(
-            [
-                person.name, 
-                person.birth_year, 
-                person.height, 
-                person.mass
-            ]);
-    });
-
+    // console.log(props.header);
+    // console.log(props.body);
 
     return (
         <div className={classes.Table}>
             <table className="table">
-                <thead className="thead-dark">
-                    <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Birthdate</th>
-                        <th scope="col">Height</th>
-                        <th scope="col">Mass</th>
-                    </tr>
-                </thead>
-                <TableRows data={tableData}/>
+                <TableHeader header={props.header}/>
+                <TableBody body={props.body} />
             </table>
         </div>
     );
-};
+}
 
 export default table;
+
+            {/* <thead className="thead-dark">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Birthdate</th>
+                    <th scope="col">Height</th>
+                    <th scope="col">Mass</th>
+                    <th scope="col">Homeworld</th>
+                    <th scope="col">Species</th>
+                </tr>
+            </thead> */}
