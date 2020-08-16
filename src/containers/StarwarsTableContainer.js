@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Table from '../components/Table/Table';
 
-import { fetchPeople, fetchHomeworld, fetchSpecies, fetchData } from '../http';
+import { fetchPeople, fetchData } from '../http';
 
 const StarwarsTableContainer = () => {
 
