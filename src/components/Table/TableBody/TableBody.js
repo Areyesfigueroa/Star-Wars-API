@@ -2,7 +2,7 @@ import React from 'react';
 import TableRow from './TableRow/TableRow';
 
 const tableBody = (props) => {
-
+    // console.log(props.body);
     return (
         <tbody>
             {props.body.map(row => (

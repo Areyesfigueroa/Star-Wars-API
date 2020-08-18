@@ -1,25 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import Table from '../components/Table/Table';
+import Pagination from '../components/Pagination/Pagination';
 
 import { fetchPeople, fetchData } from '../http';
 
 const StarwarsTableContainer = () => {
 
-    const [people, setPeople] = useState([]);
     const [tableBody, setTableBody] = useState([]);
-
+    const [pageCount, setPageCount] = useState(0);
+    const [page, setPage] = useState(1);
+    
     useEffect(() => {
-        fetchPeople(1).then(res => {
-            setPeople(res.results);
+        fetchPeople(page).then(res => {
+            setPageCount(Math.ceil(res.count/res.results.length));
         });
-    }, []);
-
+    }, [])
+    
     useEffect(() => {
-        if (people.length <= 0) return;
+        fetchPeople(page).then(res => {
+            populateTableBody(res.results);
+        });
+    }, [page]);
+
+    const populateTableBody = (people) => {
         let tableData = [];
         people.forEach(async (person) => {
             let homeworld = person.homeworld ? await fetchData(person.homeworld) : "N/A";
-            let species = person.species.length > 0 ? await fetchData(person.species[0]) : {name: 'N/A'};
+            let species = person.species.length > 0 ? await fetchData(person.species[0]) : {name: 'Human'};
 
             tableData.push([
                 person.name,
@@ -34,16 +41,22 @@ const StarwarsTableContainer = () => {
                 setTableBody(tableData);
             }
         });
+    }
 
-    }, [people]);
+    const table = (
+        <Fragment>
+            <Table 
+            header={['Name','Birth Year','Height','Mass','Homeworld','Species']} 
+            body={tableBody}
+            /> 
+    
+            <Pagination click={setPage} count={pageCount}/>
+        </Fragment>
+    );
 
     return (
         <div>
-            {tableBody.length > 0 ? 
-            <Table 
-            header={['Name','Birth Year','Height','Mass','Homeworld','Species']} 
-            body={tableBody} 
-            />: null}
+            { tableBody.length > 0 ? table: null }
         </div>
     );
 };
