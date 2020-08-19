@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import Table from '../components/Table/Table';
 import Pagination from '../components/Pagination/Pagination';
+import Spinner from 'react-bootstrap/Spinner';
 
 import { fetchPeople, fetchData } from '../http';
 
@@ -9,6 +10,7 @@ const StarwarsTableContainer = () => {
     const [tableBody, setTableBody] = useState([]);
     const [pageCount, setPageCount] = useState(0);
     const [page, setPage] = useState(1);
+    const [loading, setLoading] = useState(false);
     
     useEffect(() => {
         fetchPeople(page).then(res => {
@@ -18,9 +20,12 @@ const StarwarsTableContainer = () => {
     
     useEffect(() => {
         fetchPeople(page).then(res => {
+            setLoading(true);
             populateTableBody(res.results);
         });
     }, [page]);
+
+    useEffect(() => setLoading(false), [tableBody]);
 
     const populateTableBody = (people) => {
         let tableData = [];
@@ -44,19 +49,35 @@ const StarwarsTableContainer = () => {
     }
 
     const table = (
-        <Fragment>
-            <Table 
-            header={['Name','Birth Year','Height','Mass','Homeworld','Species']} 
-            body={tableBody}
-            /> 
-    
-            <Pagination click={setPage} count={pageCount}/>
-        </Fragment>
+        <Table 
+        header={['Name','Birth Year','Height','Mass','Homeworld','Species']} 
+        body={tableBody}
+        />         
+    );
+
+    const loadingSpinner = (
+        <div 
+        style={
+            {
+                display: 'flex', 
+                height: "616px", 
+                padding: "30px", 
+                marginTop: "50px", 
+                alignItems: "center",
+                justifyContent: "center",
+                boxSizing: "border-box"
+            }}>
+            <Spinner animation="border" role="status">
+                <span className="sr-only">Loading...</span>
+            </Spinner>
+        </div>
     );
 
     return (
         <div>
-            { tableBody.length > 0 ? table: null }
+            { loading ? loadingSpinner : table }
+            { pageCount===0 ? null :  <Pagination click={setPage} count={pageCount} /> }
+
         </div>
     );
 };
