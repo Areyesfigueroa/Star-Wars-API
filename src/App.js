@@ -22,7 +22,6 @@ function App() {
   const [tableData, setTableData]= useState(null);
   const [pageCount, setPageCount] = useState(0);
   const [page, setPage] = useState(1);
-  // const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     fetchPeople(page).then(res => {
@@ -36,6 +35,7 @@ function App() {
     });
   }, [page]);
 
+
   const handleSearch = (query) => {
       fetchSearchResults(query).then(res => {
         if(!res.results) return;
@@ -43,30 +43,18 @@ function App() {
       });
   }
 
-  // const loadingSpinner = (
-  //   <div 
-  //   style={
-  //       {
-  //           display: 'flex', 
-  //           height: "616px", 
-  //           padding: "30px", 
-  //           marginTop: "50px", 
-  //           alignItems: "center",
-  //           justifyContent: "center",
-  //           boxSizing: "border-box"
-  //       }}>
-  //       <Spinner animation="border" role="status">
-  //           <span className="sr-only">Loading...</span>
-  //       </Spinner>
-  //     </div>
-  //   );
+  const loadingSpinner = (
+    <Spinner animation="border" role="status">
+      <span className="sr-only">Loading...</span>
+    </Spinner>
+  );
 
   return (
     <div className="App">
       <Header />
       <SearchbarContainer search={handleSearch}/>
-      { tableData ? <StarwarsTableContainer data={tableData}/>: null}
-      { pageCount ? <Pagination click={setPage} count={pageCount} />:null }
+      { tableData && pageCount ? <StarwarsTableContainer data={tableData}/>: loadingSpinner}
+      { tableData && pageCount ? <Pagination click={setPage} count={pageCount} />: null}
     </div>
   );
 }

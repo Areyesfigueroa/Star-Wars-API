@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Table from '../components/Table/Table';
 
-import { fetchData } from '../http';
+import { fetchHomeworld, fetchSpecies } from '../http';
 
 const StarwarsTableContainer =  (props) => {
 
@@ -10,8 +10,8 @@ const StarwarsTableContainer =  (props) => {
     useEffect(() => {
         let tableData = [];
         props.data.forEach(async (person) => {
-            let homeworld = person.homeworld ? await fetchData(person.homeworld) : "N/A";
-            let species = person.species.length > 0 ? await fetchData(person.species[0]) : {name: 'Human'};
+            let homeworld = person.homeworld ? await fetchHomeworld(person.homeworld) : "N/A";
+            let species = person.species.length > 0 ? await fetchSpecies(person.species[0]) : {name: 'Human'};
     
             tableData.push([
                 person.name,
@@ -27,16 +27,12 @@ const StarwarsTableContainer =  (props) => {
         });
     }, [props.data]);
 
-    useEffect(() => {
-        console.log(tableBody);
-    }, [tableBody]);
-
     return (
         <div>
-            {/* <Table 
+            <Table 
             header={['Name','Birth Year','Height','Mass','Homeworld','Species']} 
-            body={tb}
-            />    */}
+            body={tableBody}
+            />   
         </div>
     );
 };
