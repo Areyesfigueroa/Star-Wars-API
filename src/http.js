@@ -42,4 +42,15 @@ const fetchSpecies = (id) => {
     });
 }
 
-export { fetchPeople, fetchHomeworld, fetchSpecies, fetchData }
+const fetchSearchResults = (search) => {
+  const query = `people/?search=${search}`;
+
+  return axios.get(query)
+    .then(response => {
+      return response.data;
+    }).catch(err => {
+      console.log(err);
+    });
+}
+
+export { fetchPeople, fetchHomeworld, fetchSpecies, fetchData, fetchSearchResults }
