@@ -30,6 +30,7 @@ function App() {
   }, []);
 
   useEffect(() => {
+    if(isDisplayingSearchData()) return;
     fetchPeople(page).then(res => {
         setTableData(res.results);
     });
@@ -40,7 +41,12 @@ function App() {
       fetchSearchResults(query).then(res => {
         if(!res.results) return;
         setTableData(res.results);
+        setPage(0); 
       });
+  }
+
+  const isDisplayingSearchData = () => {
+    return page === 0;
   }
 
   const loadingSpinner = (

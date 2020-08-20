@@ -4,16 +4,14 @@ import Searchbar from '../components/Searchbar/Searchbar';
 const SearchbarContainer = (props) => {
 
     const inputEl = useRef(null);
-    // const handleSearch = () => {
-    //     fetchSearchResults(inputEl.current.value).then(response => {
-    //         if(!response.results) return;
-    //         props.searchResults(response.results);
-    //     });
-    // }
+
+    const onKeyDownHandler = (event) => {
+        if(event.keyCode === 13) props.search(inputEl.current.value);
+    }
 
     return (
         <div>
-            <Searchbar reference={inputEl} search={() => props.search(inputEl.current.value)}/>
+            <Searchbar reference={inputEl} keydown={onKeyDownHandler} search={() => props.search(inputEl.current.value)}/>
         </div>
     );
 };
