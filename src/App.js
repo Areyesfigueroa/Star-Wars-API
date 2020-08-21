@@ -4,12 +4,10 @@ import './App.css';
 // Components
 import Header from './components/Header/Header';
 
-//Components
-import Pagination from './components/Pagination/Pagination';
-
 //Containers
 import StarwarsTableContainer from './containers/StarwarsTableContainer';
 import SearchbarContainer from './containers/SearchbarContainer';
+import PaginationContainer from './containers/PaginationContainer';
 
 //Bootstrap
 import Spinner from 'react-bootstrap/Spinner';
@@ -55,12 +53,29 @@ function App() {
     </Spinner>
   );
 
+  const displayTable = () => {
+    if(tableData && pageCount)
+    {
+      return (
+        <div>
+          <StarwarsTableContainer data={tableData}/>
+          <PaginationContainer 
+            click={setPage} 
+            page={page} 
+            count={pageCount} 
+          />
+        </div>
+      );
+    } else {
+      return loadingSpinner;
+    }
+  }
+
   return (
     <div className="App">
       <Header />
       <SearchbarContainer search={handleSearch}/>
-      { tableData && pageCount ? <StarwarsTableContainer data={tableData}/>: loadingSpinner}
-      { tableData && pageCount ? <Pagination click={setPage} count={pageCount} />: null}
+      { displayTable() }
     </div>
   );
 }
