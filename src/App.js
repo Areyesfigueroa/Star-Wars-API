@@ -32,6 +32,7 @@ function App() {
   useEffect(() => {
     if(isDisplayingSearchData()) return;
     fetchPeople(page).then(res => {
+        setPageCount(Math.ceil(res.count/res.results.length));
         setTableData(res.results);
     });
   }, [page]);
@@ -40,6 +41,7 @@ function App() {
   const handleSearch = (query) => {
       fetchSearchResults(query).then(res => {
         if(!res.results) return;
+        setPageCount(Math.ceil(res.count/res.results.length));
         setTableData(res.results);
         setPage(0); 
       });
@@ -66,6 +68,7 @@ function App() {
             page={page} 
             count={pageCount} 
             maxDisplayEntries={10}
+            currDisplayEntries={tableData.length}
             totalEntries={totalEntries}
           />
         </div>

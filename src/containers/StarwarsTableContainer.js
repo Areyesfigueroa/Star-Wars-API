@@ -6,6 +6,7 @@ import { fetchHomeworld, fetchSpecies } from '../http';
 const StarwarsTableContainer =  (props) => {
 
     const [tableBody, setTableBody] = useState([]);
+    const [tableHeader, setTableHeader] = useState([]);
 
     useEffect(() => {
         let tableData = [];
@@ -22,6 +23,7 @@ const StarwarsTableContainer =  (props) => {
                 species.name
             ]);
             if(tableData.length === props.data.length) {
+                setTableHeader(['Name','Birth Year','Height','Mass','Homeworld','Species']);
                 setTableBody(tableData);
             }
         });
@@ -30,7 +32,7 @@ const StarwarsTableContainer =  (props) => {
     return (
         <div>
             <Table 
-            header={['Name','Birth Year','Height','Mass','Homeworld','Species']} 
+            header={tableHeader} 
             body={tableBody}
             />   
         </div>
