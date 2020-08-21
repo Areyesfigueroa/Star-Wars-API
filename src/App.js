@@ -20,10 +20,12 @@ function App() {
   const [tableData, setTableData]= useState(null);
   const [pageCount, setPageCount] = useState(0);
   const [page, setPage] = useState(1);
+  const [totalEntries, setTotalEntries] = useState(0);
 
   useEffect(() => {
     fetchPeople(page).then(res => {
       setPageCount(Math.ceil(res.count/res.results.length));
+      setTotalEntries(res.count);
     });
   }, []);
 
@@ -63,6 +65,8 @@ function App() {
             click={setPage} 
             page={page} 
             count={pageCount} 
+            maxDisplayEntries={10}
+            totalEntries={totalEntries}
           />
         </div>
       );

@@ -5,7 +5,9 @@ import Pagination from '../components/Pagination/Pagination';
 const PaginationContainer = (props) => {
     
     const [buttonList, setButtonList] = useState([]);
-    
+    const [fromEntries, setFromEntries] = useState(1);
+    const [toEntries, setToEntries] = useState(10);
+
     useEffect(() => {
         let list = [];
         for(let i = 1; i <= props.count; i++) {
@@ -18,6 +20,11 @@ const PaginationContainer = (props) => {
         }
         setButtonList(list);
     }, []);
+
+    useEffect(() => {
+        setFromEntries((props.page * props.maxDisplayEntries) - (props.maxDisplayEntries - 1));
+        setToEntries((props.page * props.maxDisplayEntries) > props.totalEntries ? props.totalEntries: (props.page * props.maxDisplayEntries));
+    }, [props.page]);
 
     const handlePrevBtn = () => {
         let newPage = props.page - 1 < 0 ? 0 : props.page - 1;
@@ -33,9 +40,9 @@ const PaginationContainer = (props) => {
         buttonList={buttonList} 
         prevBtn={handlePrevBtn} 
         nextBtn={handleNextBtn}
-        fromEntries={1}
-        toEntries={10}
-        totalEntries={83} />
+        fromEntries={fromEntries}
+        toEntries={toEntries}
+        totalEntries={props.totalEntries} />
     );
 };
 
