@@ -13,7 +13,7 @@ import PaginationContainer from './containers/PaginationContainer';
 import Spinner from 'react-bootstrap/Spinner';
 
 //Axios
-import {fetchPeople, fetchSearchResults} from './http';
+import {fetchSearchResults} from './http';
 
 function App() {
   
@@ -21,34 +21,22 @@ function App() {
   const [pageCount, setPageCount] = useState(0);
   const [page, setPage] = useState(1);
   const [totalEntries, setTotalEntries] = useState(0);
+  const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
-    fetchPeople(page).then(res => {
-      setPageCount(Math.ceil(res.count/res.results.length));
-      setTotalEntries(res.count);
-    });
-  }, []);
 
-  useEffect(() => {
-    if(isDisplayingSearchData()) return;
-    fetchPeople(page).then(res => {
-        setPageCount(Math.ceil(res.count/res.results.length));
+    fetchSearchResults(searchValue, page).then(res => {
+        // debugger;
+        setTotalEntries(res.count);
+        setPageCount(Math.ceil(res.count/10));
         setTableData(res.results);
     });
-  }, [page]);
+  }, [page, searchValue]);
 
 
   const handleSearch = (query) => {
-      fetchSearchResults(query).then(res => {
-        if(!res.results) return;
-        setPageCount(Math.ceil(res.count/res.results.length));
-        setTableData(res.results);
-        setPage(0); 
-      });
-  }
-
-  const isDisplayingSearchData = () => {
-    return page === 0;
+    setSearchValue(query);
+    setPage(1);
   }
 
   const loadingSpinner = (

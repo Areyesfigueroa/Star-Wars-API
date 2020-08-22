@@ -7,7 +7,6 @@ const PaginationContainer = (props) => {
     const [buttonList, setButtonList] = useState([]);
     const [fromEntries, setFromEntries] = useState(1);
     const [toEntries, setToEntries] = useState(10);
-    const [totalEntries, setTotalEntries] = useState(10);
 
     useEffect(() => {
         let list = [];
@@ -23,21 +22,8 @@ const PaginationContainer = (props) => {
     }, [props.count]);
 
     useEffect(() => {
-        if(props.page !== 0) return;
-        
-        //Searching, data has been filtered.
-        setFromEntries(1);
-        setToEntries(props.currDisplayEntries);
-        setTotalEntries(props.currDisplayEntries);
-    });
-
-    useEffect(() => {
-        if(props.page === 0) return;
-
         setFromEntries((props.page * props.maxDisplayEntries) - (props.maxDisplayEntries - 1));
         setToEntries((props.page * props.maxDisplayEntries) > props.totalEntries ? props.totalEntries: (props.page * props.maxDisplayEntries));
-        setTotalEntries(props.totalEntries);
-
     }, [props.page]);
 
     const handlePrevBtn = () => {
@@ -56,7 +42,7 @@ const PaginationContainer = (props) => {
         nextBtn={handleNextBtn}
         fromEntries={fromEntries}
         toEntries={toEntries}
-        totalEntries={totalEntries} />
+        totalEntries={props.totalEntries} />
     );
 };
 
