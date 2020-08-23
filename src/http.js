@@ -23,7 +23,7 @@ const fetchData = (path) => {
     });
 }
 
-const getCachedData = (url, cache) => {
+const getFilteredCachedData = (url, cache) => {
   if(cache.length === 0) return null;
 
   let res = cache.filter(el => el.url === url);
@@ -33,17 +33,16 @@ const getCachedData = (url, cache) => {
 }
 
 const fetchHomeworld = (url) => {
-  let homeworld = getCachedData(url, homeWorldCache);
+  let homeworld = getFilteredCachedData(url, homeWorldCache);
   
   if(homeworld) {
     return homeworld;
   } else {
     return axios.get(url)
       .then(response => {
-        console.log("API Calls");
 
         const newObj = {url: url, name: response.data.name};
-        homeworld = getCachedData(url, homeWorldCache);
+        homeworld = getFilteredCachedData(url, homeWorldCache);
         if(!homeworld) homeWorldCache.push(newObj);
 
         return newObj;
@@ -54,17 +53,16 @@ const fetchHomeworld = (url) => {
 }
 
 const fetchSpecies = (url) => {
-  let species = getCachedData(url, speciesCache);
+  let species = getFilteredCachedData(url, speciesCache);
   
   if(species) {
     return species;
   } else {
     return axios.get(url)
       .then(response => {
-        console.log("API Calls");
 
         const newObj = {url: url, name: response.data.name};
-        species = getCachedData(url, speciesCache);
+        species = getFilteredCachedData(url, speciesCache);
         if(!species) speciesCache.push(newObj);
 
         return newObj;
