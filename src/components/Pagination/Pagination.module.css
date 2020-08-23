@@ -5,3 +5,8 @@
     align-items: center;
     color: var(--color);
 }
+
+.row {
+    display: flex;
+    flex-direction: row;
+}

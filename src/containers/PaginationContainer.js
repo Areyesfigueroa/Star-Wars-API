@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Button from 'react-bootstrap/Button';
+import PaginationBtn from 'react-bootstrap/Pagination';
 import Pagination from '../components/Pagination/Pagination';
 
 const PaginationContainer = (props) => {
@@ -12,14 +12,16 @@ const PaginationContainer = (props) => {
         let list = [];
         for(let i = 1; i <= props.count; i++) {
             list.push((
-                <Button 
-                key={i}
-                variant="primary"
-                onClick={() => props.click(i)}>{i}</Button>
+                <PaginationBtn.Item 
+                key={i} 
+                active={props.page === i}
+                onClick={() => props.click(i)}>
+                    {i}
+                </PaginationBtn.Item>
             ))
         }
         setButtonList(list);
-    }, [props.count]);
+    }, [props.page]);
 
     useEffect(() => {
         setFromEntries((props.page * props.maxDisplayEntries) - (props.maxDisplayEntries - 1));
@@ -27,16 +29,16 @@ const PaginationContainer = (props) => {
     }, [props.page, props.totalEntries]);
 
     const handlePrevBtn = () => {
-        let newPage = props.page - 1 < 0 ? 0 : props.page - 1;
+        let newPage = props.page === 1 ? 1 : props.page - 1;
         props.click(newPage);
     }
 
     const handleNextBtn = () => {
-        let newPage = props.page + 1 > props.count ? props.count : props.page + 1
+        let newPage = props.page === props.count ? props.count : props.page + 1;
         props.click(newPage);
     }
     return (
-        <Pagination 
+        <Pagination
         buttonList={buttonList} 
         prevBtn={handlePrevBtn} 
         nextBtn={handleNextBtn}
