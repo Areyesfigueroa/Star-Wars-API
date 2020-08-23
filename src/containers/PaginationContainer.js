@@ -24,7 +24,7 @@ const PaginationContainer = (props) => {
     useEffect(() => {
         setFromEntries((props.page * props.maxDisplayEntries) - (props.maxDisplayEntries - 1));
         setToEntries((props.page * props.maxDisplayEntries) > props.totalEntries ? props.totalEntries: (props.page * props.maxDisplayEntries));
-    }, [props.page]);
+    }, [props.page, props.totalEntries]);
 
     const handlePrevBtn = () => {
         let newPage = props.page - 1 < 0 ? 0 : props.page - 1;

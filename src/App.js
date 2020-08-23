@@ -26,7 +26,6 @@ function App() {
   useEffect(() => {
 
     fetchSearchResults(searchValue, page).then(res => {
-        // debugger;
         setTotalEntries(res.count);
         setPageCount(Math.ceil(res.count/10));
         setTableData(res.results);
