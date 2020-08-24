@@ -44,32 +44,25 @@ function App() {
     </Spinner>
   );
 
-  const displayTable = () => {
-    if(tableData && pageCount)
-    {
-      return (
-        <div>
-          <StarwarsTableContainer data={tableData}/>
-          <PaginationContainer 
-            click={setPage} 
-            page={page} 
-            count={pageCount} 
-            maxDisplayEntries={10}
-            currDisplayEntries={tableData.length}
-            totalEntries={totalEntries}
-          />
-        </div>
-      );
-    } else {
-      return loadingSpinner;
-    }
-  }
+  const table = () => (
+    <div>
+      <StarwarsTableContainer data={tableData} />
+      <PaginationContainer
+        click={setPage}
+        page={page}
+        count={pageCount}
+        maxDisplayEntries={10}
+        currDisplayEntries={tableData.length}
+        totalEntries={totalEntries}
+      />
+    </div>
+  );
 
   return (
     <div className="App">
       <Header />
       <SearchbarContainer search={handleSearch}/>
-      { displayTable() }
+      { tableData ? table(): loadingSpinner }
     </div>
   );
 }
