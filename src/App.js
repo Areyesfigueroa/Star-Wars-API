@@ -6,7 +6,7 @@ import Header from './components/Header/Header';
 import Background from './components/Background/Background';
 
 //Containers
-import StarwarsContainer from './containers/StarwarsContainer';
+import StarwarsTableSearchContainer from './containers/StarwarsTableSearchContainer/StarwarsTableSearchContainer';
 
 function App() {
 
@@ -14,7 +14,7 @@ function App() {
     <div className="App">
       <Background img='red-blue-galaxy.jpg' shadowOpacity={0.7}/>
       <Header />
-      <StarwarsContainer />
+      <StarwarsTableSearchContainer />
     </div>
   );
 }

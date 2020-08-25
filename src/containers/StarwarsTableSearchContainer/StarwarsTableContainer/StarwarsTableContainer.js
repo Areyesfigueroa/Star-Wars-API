@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import Table from '../components/Table/Table';
+import Table from '../../../components/Table/Table';
 
-import PaginationContainer from './PaginationContainer';
+import PaginationContainer from '../../PaginationContainer/PaginationContainer';
 
-import { fetchHomeworld, fetchSpecies } from '../http';
+import { fetchHomeworld, fetchSpecies } from '../../../http';
 
 const StarwarsTableContainer =  (props) => {
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Searchbar from '../components/Searchbar/Searchbar';
+import Searchbar from '../../components/Searchbar/Searchbar';
 
 const SearchbarContainer = (props) => {
     const [inputValue, setInputValue] = useState('');
@@ -9,11 +9,7 @@ const SearchbarContainer = (props) => {
         if(event.keyCode === 13) props.search(event.target.value);
     }
 
-    return (
-        <div>
-            <Searchbar keydown={onKeyDownHandler} search={() => props.search(inputValue)}/>
-        </div>
-    );
+    return (<Searchbar keydown={onKeyDownHandler} search={() => props.search(inputValue)}/>);
 };
 
 export default SearchbarContainer;

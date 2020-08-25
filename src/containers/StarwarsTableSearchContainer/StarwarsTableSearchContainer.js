@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 
 //Containers
-import StarwarsTableContainer from './StarwarsTableContainer';
-import SearchbarContainer from './SearchbarContainer';
+import StarwarsTableContainer from './StarwarsTableContainer/StarwarsTableContainer';
+import SearchbarContainer from '../SearchbarContainer/SearchbarContainer';
 
 //Bootstrap
-import LoadingSpinner from '../components/LoadingSpinner/LoadingSpinner';
+import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 
 //Axios
-import {fetchSearchResults} from '../http';
+import {fetchSearchResults} from '../../http';
 
 
-const StarwarsContainer = () => {
+const StarwarsTableSearchContainer = () => {
 
     const [page, setPage] = useState(1);
     const [pageCount, setPageCount] = useState(0);
@@ -21,7 +21,6 @@ const StarwarsContainer = () => {
     const [tableData, setTableData]= useState(null);
 
     useEffect(() => {
-        console.log("Change Page or search");
         fetchSearchResults(searchValue, page).then(res => {
             setTotalEntries(res.count);
             setPageCount(Math.ceil(res.count/10));
@@ -53,4 +52,4 @@ const StarwarsContainer = () => {
       );
 };
 
-export default StarwarsContainer;
+export default StarwarsTableSearchContainer;

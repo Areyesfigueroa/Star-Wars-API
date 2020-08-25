@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PaginationBtn from 'react-bootstrap/Pagination';
-import Pagination from '../components/Pagination/Pagination';
+import Pagination from '../../components/Pagination/Pagination';
 
 const PaginationContainer = (props) => {
     
