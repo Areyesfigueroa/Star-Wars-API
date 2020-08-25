@@ -10,3 +10,9 @@
     display: flex;
     flex-direction: row;
 }
+
+.Pagination > ul > li > a {
+    color: #007bff;
+    border-color: #007bff;
+    background-color: rgba(1, 1, 1, 0);
+};

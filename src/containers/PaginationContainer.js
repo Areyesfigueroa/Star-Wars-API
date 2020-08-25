@@ -13,6 +13,7 @@ const PaginationContainer = (props) => {
         for(let i = 1; i <= props.count; i++) {
             list.push((
                 <PaginationBtn.Item 
+                variant="outline-danger"
                 key={i} 
                 active={props.page === i}
                 onClick={() => props.click(i)}>

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import Sound from 'react-sound';
 import './App.css';
 
 // Components
 import Header from './components/Header/Header';
 import Background from './components/Background/Background';
+import SoundPlayer from './components/SoundPlayer/SoundPlayer';
 
 //Containers
 import StarwarsTableContainer from './containers/StarwarsTableContainer';
@@ -61,6 +63,9 @@ function App() {
 
   return (
     <div className="App">
+      {/* <SoundPlayer 
+      url={'./sounds/empire.mp3'}
+      playStatus={Sound.status.PLAYING} /> */}
       <Background img='red-blue-galaxy.jpg' shadowOpacity={0.7}/>
       <Header />
       <SearchbarContainer search={handleSearch}/>

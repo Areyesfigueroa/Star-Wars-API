@@ -1,9 +1,10 @@
 .App {
   text-align: center;
   font-family: StarJedi;
-  color: yellow;
+  color: #ffd509;
 }
 
 :root {
   --padding: 5px 100px;
 };
+
