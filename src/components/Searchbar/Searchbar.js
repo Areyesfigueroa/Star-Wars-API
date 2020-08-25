@@ -10,7 +10,6 @@ const searchbar = (props) => {
         <div className={classes.Searchbar}>
             <InputGroup className="mb-3">
                 <FormControl
-                ref={props.reference}
                 onKeyDown={(event) => props.keydown(event)}
                 placeholder="Search Character..."
                 aria-label="Searchbar"

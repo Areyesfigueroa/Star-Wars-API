@@ -1,17 +1,17 @@
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 import Searchbar from '../components/Searchbar/Searchbar';
 
 const SearchbarContainer = (props) => {
-
-    const inputEl = useRef(null);
+    const [inputValue, setInputValue] = useState('');
 
     const onKeyDownHandler = (event) => {
-        if(event.keyCode === 13) props.search(inputEl.current.value);
+        setInputValue(event.target.value);
+        if(event.keyCode === 13) props.search(event.target.value);
     }
 
     return (
         <div>
-            <Searchbar reference={inputEl} keydown={onKeyDownHandler} search={() => props.search(inputEl.current.value)}/>
+            <Searchbar keydown={onKeyDownHandler} search={() => props.search(inputValue)}/>
         </div>
     );
 };

@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import Sound from 'react-sound';
 import './App.css';
 
 // Components
 import Header from './components/Header/Header';
 import Background from './components/Background/Background';
-import SoundPlayer from './components/SoundPlayer/SoundPlayer';
 
 //Containers
 import StarwarsTableContainer from './containers/StarwarsTableContainer';
@@ -13,7 +11,7 @@ import SearchbarContainer from './containers/SearchbarContainer';
 import PaginationContainer from './containers/PaginationContainer';
 
 //Bootstrap
-import Spinner from 'react-bootstrap/Spinner';
+import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
 
 //Axios
 import {fetchSearchResults} from './http';
@@ -41,12 +39,6 @@ function App() {
     setPage(1);
   }
 
-  const loadingSpinner = (
-    <Spinner animation="border" role="status">
-      <span className="sr-only">Loading...</span>
-    </Spinner>
-  );
-
   const table = () => (
     <div>
       <StarwarsTableContainer data={tableData} />
@@ -63,13 +55,10 @@ function App() {
 
   return (
     <div className="App">
-      {/* <SoundPlayer 
-      url={'./sounds/empire.mp3'}
-      playStatus={Sound.status.PLAYING} /> */}
       <Background img='red-blue-galaxy.jpg' shadowOpacity={0.7}/>
       <Header />
       <SearchbarContainer search={handleSearch}/>
-      { tableData ? table(): loadingSpinner }
+      { tableData ? table(): <LoadingSpinner /> }
     </div>
   );
 }
