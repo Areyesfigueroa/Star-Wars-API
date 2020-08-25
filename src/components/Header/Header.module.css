@@ -1,3 +1,32 @@
 .Header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin: 30px 0;
+    padding: var(--padding);
 }
+
+.Header img {
+    width: auto;
+    height: 50px;
+}
+
+.title {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.title h1 {
+    min-width: 300px;
+}
+
+.title img {
+    width: 100%;
+    height: auto;
+}
+

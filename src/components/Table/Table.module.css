@@ -1,3 +1,7 @@
 .Table {
     padding: var(--padding);
 }
+
+.Table * {
+    color: yellow;
+}
