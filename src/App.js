@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './App.css';
 
 // Components
@@ -6,59 +6,15 @@ import Header from './components/Header/Header';
 import Background from './components/Background/Background';
 
 //Containers
-import StarwarsTableContainer from './containers/StarwarsTableContainer';
-import SearchbarContainer from './containers/SearchbarContainer';
-import PaginationContainer from './containers/PaginationContainer';
-
-//Bootstrap
-import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
-
-//Axios
-import {fetchSearchResults} from './http';
+import StarwarsContainer from './containers/StarwarsContainer';
 
 function App() {
-  
-  const [tableData, setTableData]= useState(null);
-  const [pageCount, setPageCount] = useState(0);
-  const [page, setPage] = useState(1);
-  const [totalEntries, setTotalEntries] = useState(0);
-  const [searchValue, setSearchValue] = useState("");
-
-  useEffect(() => {
-
-    fetchSearchResults(searchValue, page).then(res => {
-        setTotalEntries(res.count);
-        setPageCount(Math.ceil(res.count/10));
-        setTableData(res.results);
-    });
-  }, [page, searchValue]);
-
-
-  const handleSearch = (query) => {
-    setSearchValue(query);
-    setPage(1);
-  }
-
-  const table = () => (
-    <div>
-      <StarwarsTableContainer data={tableData} />
-      <PaginationContainer
-        click={setPage}
-        page={page}
-        count={pageCount}
-        maxDisplayEntries={10}
-        currDisplayEntries={tableData.length}
-        totalEntries={totalEntries}
-      />
-    </div>
-  );
 
   return (
     <div className="App">
       <Background img='red-blue-galaxy.jpg' shadowOpacity={0.7}/>
       <Header />
-      <SearchbarContainer search={handleSearch}/>
-      { tableData ? table(): <LoadingSpinner /> }
+      <StarwarsContainer />
     </div>
   );
 }

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Table from '../components/Table/Table';
 
+import PaginationContainer from './PaginationContainer';
+
 import { fetchHomeworld, fetchSpecies } from '../http';
 
 const StarwarsTableContainer =  (props) => {
@@ -32,9 +34,16 @@ const StarwarsTableContainer =  (props) => {
     return (
         <div>
             <Table 
-            header={tableHeader} 
-            body={tableBody}
+                header={tableHeader} 
+                body={tableBody}
             />   
+            <PaginationContainer
+                click={props.changePage}
+                page={props.page}
+                count={props.pageCount}
+                maxDisplayCount={props.maxDisplayCount}
+                totalEntries={props.totalEntries}
+            />
         </div>
     );
 };
