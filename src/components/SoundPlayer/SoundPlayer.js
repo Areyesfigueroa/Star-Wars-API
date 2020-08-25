@@ -1,6 +1,13 @@
 import React from 'react';
-import Sound from 'react-sound';
+import useSound from 'use-sound';
+import classes from './SoundPlayer.module.css';
 
-const soundPlayer = (props) => (<Sound {...props} />)
+import empireSong from '../../sounds/.empire.mp3.icloud';
 
-export default soundPlayer;
+const SoundPlayer = () => {
+  const [play] = useSound(empireSong);
+
+  return <button className={classes.SoundPlayer} onClick={play}>Play Music</button>;
+};
+
+export default SoundPlayer;
