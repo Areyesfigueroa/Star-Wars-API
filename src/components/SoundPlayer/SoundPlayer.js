@@ -4,14 +4,14 @@ import classes from './SoundPlayer.module.css';
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 
-import empireSong from '../../sounds/empire.mp3';
-import speakerOnImg from '../../assets/speaker-on.png';
-import speakerOffImg from '../../assets/speaker-off.png';
+import speakerOnImg from '../../assets/images/speaker-on.png';
+import speakerOffImg from '../../assets/images/speaker-off.png';
 
-
-const SoundPlayer = () => {
+const SoundPlayer = (props) => {
     const [playing, setPlaying] = useState(false);
-    const [play, { stop }] = useSound(empireSong);
+    const [play, { stop }] = useSound(props.audio, {
+        onend: () => play()
+    });
 
     const handleClick = () => {
         let newStatus = !playing;
