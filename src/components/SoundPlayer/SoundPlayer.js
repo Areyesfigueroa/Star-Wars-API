@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import useSound from 'use-sound';
 import classes from './SoundPlayer.module.css';
+
+import useSound from 'use-sound';
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 

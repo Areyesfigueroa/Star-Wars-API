@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
-//Containers
 import StarwarsTableContainer from './StarwarsTableContainer/StarwarsTableContainer';
 import SearchbarContainer from '../SearchbarContainer/SearchbarContainer';
 
-//Bootstrap
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 
-//Axios
 import {fetchSearchResults} from '../../http';
 
 
