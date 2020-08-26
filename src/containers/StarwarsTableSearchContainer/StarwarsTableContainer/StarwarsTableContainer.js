@@ -13,8 +13,11 @@ const StarwarsTableContainer =  (props) => {
     useEffect(() => {
         let tableData = [];
         props.data.forEach(async (person) => {
-            let homeworld = person.homeworld ? await fetchHomeworld(person.homeworld.replace('http', 'https')) : "N/A";
-            let species = person.species.length > 0 ? await fetchSpecies(person.species[0].replace('http', 'https')) : {name: 'Human'};
+            const homeworldURL = person.homeworld.replace('http', 'https');
+            const speciesURL = person.species.length > 0 ? person.species[0].replace('http', 'https') : null;
+
+            const homeworld = person.homeworld ? await fetchHomeworld(homeworldURL) : "N/A";
+            const species = speciesURL ? await fetchSpecies(speciesURL) : {name: 'Human'};
     
             tableData.push([
                 person.name,
