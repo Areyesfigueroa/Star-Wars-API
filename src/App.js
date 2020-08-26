@@ -16,7 +16,7 @@ function App() {
       <Background img='red-blue-galaxy.jpg' shadowOpacity={0.7}/>
       <SoundPlayer />
       <Header />
-      {/* <StarwarsTableSearchContainer /> */}
+      <StarwarsTableSearchContainer />
     </div>
   );
 }
