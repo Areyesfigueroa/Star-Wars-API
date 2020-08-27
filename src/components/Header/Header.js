@@ -10,10 +10,14 @@ const header = () => {
     const headerStyle = {
         margin: "30px 0",
         padding: "0 100px"
-    }
+    };
+    const stormTrooperImgStyle = {
+        width: "auto",
+        height: "50px"
+    };
     return (
         <header className={classes.Header} style={headerStyle}>
-            <Image className={classes.stormtrooperImg} src={stormTrooperGif}/>
+            <Image style={stormTrooperImgStyle} src={stormTrooperGif}/>
             <div className={classes.title}>
                 <div>
                     <Image src={redSaber}/>
