@@ -13,7 +13,7 @@ const header = () => {
     }
     return (
         <header className={classes.Header} style={headerStyle}>
-            <Image src={stormTrooperGif}/>
+            <Image className={classes.stormtrooperImg} src={stormTrooperGif}/>
             <div className={classes.title}>
                 <div>
                     <Image src={redSaber}/>
