@@ -15,16 +15,28 @@ const header = () => {
         width: "auto",
         height: "50px"
     };
+    const titleStyle = {
+        width: "100%",
+        position: "relative",
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center"
+    }
+    const lightSaberImgStyle = {
+        width: "100%",
+        height: "auto"
+    }
     return (
         <header className={classes.Header} style={headerStyle}>
             <Image style={stormTrooperImgStyle} src={stormTrooperGif}/>
-            <div className={classes.title}>
+            <div style={titleStyle}>
                 <div>
-                    <Image src={redSaber}/>
+                    <Image style={lightSaberImgStyle} src={redSaber}/>
                 </div>
-                <h1>Star Wars APi</h1>
+                <h1 style={{minWidth: "300px"}}>Star Wars APi</h1>
                 <div>
-                    <Image src={blueSaber}/>
+                    <Image style={lightSaberImgStyle} src={blueSaber}/>
                 </div>
             </div>
         </header>
