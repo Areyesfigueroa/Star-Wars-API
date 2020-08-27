@@ -1,9 +1,14 @@
-.Header img {
+.header {
+    margin: 30px 0;
+    padding: 0 100px;
+}
+
+.header img {
     width: auto;
     height: 50px;
 }
 
-.Header .title {
+.header .title {
     width: 100%;
     position: relative;
     display: flex;
@@ -12,11 +17,11 @@
     align-items: center;
 }
 
-.Header .title h1 {
+.header .title h1 {
     min-width: 300px;
 }
 
-.Header .title img {
+.header .title img {
     width: 100%;
     height: auto;
 }

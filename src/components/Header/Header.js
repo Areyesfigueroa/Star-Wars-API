@@ -7,12 +7,8 @@ import redSaber from '../../assets/images/Left_Red_01.png';
 import blueSaber from '../../assets/images/Right_Blue_01.png';
 
 const header = () => {
-    const headerStyle = {
-        margin: "30px 0",
-        padding: "0 100px"
-    }
     return (
-        <header className={classes.Header} style={headerStyle}>
+        <header className={classes.header}>
             <Image src={stormTrooperGif}/>
             <div className={classes.title}>
                 <div>
