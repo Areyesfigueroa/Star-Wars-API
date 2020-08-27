@@ -1,18 +1,9 @@
-.Header {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 30px 0;
-    padding: 0 100px;
-}
-
 .Header img {
     width: auto;
     height: 50px;
 }
 
-.title {
+.Header .title {
     width: 100%;
     position: relative;
     display: flex;
@@ -21,11 +12,11 @@
     align-items: center;
 }
 
-.title h1 {
+.Header .title h1 {
     min-width: 300px;
 }
 
-.title img {
+.Header .title img {
     width: 100%;
     height: auto;
 }
