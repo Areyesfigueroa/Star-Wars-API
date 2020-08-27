@@ -8,7 +8,7 @@ import blueSaber from '../../assets/images/Right_Blue_01.png';
 
 const header = () => {
     return (
-        <header className={classes.header}>
+        <header className={classes.HeaderComp}>
             <Image src={stormTrooperGif}/>
             <div className={classes.title}>
                 <div>
