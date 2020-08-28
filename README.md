@@ -4,7 +4,7 @@ Try it out! [Application Link](https://ar-starwars-table.herokuapp.com/)
 
 Search through all of Star Wars characters and their details.
 
-![Star Wars API Table](./assets/images/starwars-project.png)
+![Star Wars API Table](./src/assets/images/starwars-project.png)
 
 ## Description
 
