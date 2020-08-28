@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 
+//NOTE: This heroku project is only accepting inline css for this component.
 const searchbar = (props) => {
     return (
         <div style={{padding: "0 100px"}}>

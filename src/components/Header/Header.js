@@ -6,6 +6,7 @@ import stormTrooperGif from '../../assets/images/stormtrooper.gif';
 import redSaber from '../../assets/images/Left_Red_01.png';
 import blueSaber from '../../assets/images/Right_Blue_01.png';
 
+//NOTE: This heroku project is only accepting inline css for this component.
 const header = () => {
     const headerStyle = {
         margin: "30px 0",
