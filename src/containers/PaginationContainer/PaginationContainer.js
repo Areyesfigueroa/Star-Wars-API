@@ -22,12 +22,12 @@ const PaginationContainer = (props) => {
             ))
         }
         setButtonList(list);
-    }, [props.count, props.page]);
+    }, [props, props.count, props.page]);
 
     useEffect(() => {
         setFromEntries((props.page * props.maxDisplayCount) - (props.maxDisplayCount - 1));
         setToEntries((props.page * props.maxDisplayCount) > props.totalEntries ? props.totalEntries: (props.page * props.maxDisplayCount));
-    }, [props.page, props.totalEntries]);
+    }, [props, props.page, props.totalEntries]);
 
     const handlePrevBtn = () => {
         let newPage = props.page === 1 ? 1 : props.page - 1;
