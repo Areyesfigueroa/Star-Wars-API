@@ -75,7 +75,7 @@ const fetchSpecies = (url) => {
 const fetchSearchResults = (search, page) => {
 
   const query = search ? `people/?search=${search}&page=${page}`: `people/?search=&page=${page}`;
-
+  
   return axios.get(query)
     .then(response => {
       return response.data;
